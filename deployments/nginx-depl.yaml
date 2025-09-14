@@ -21,10 +21,10 @@ spec:
           image: nginx:1.27.1-alpine
           ports:
             - containerPort: 80
-
-strategy:
-  type: RollingUpdate
-  rollingUpdate:
-    maxUnavailable: 25% # Up to 25% of pods can be down during update
-    maxSurge: 25% # Can temporarily create 25% extra pods during update
+# These values are set by default, uncomment to customize
+# strategy:
+#   type: RollingUpdate
+#   rollingUpdate:
+#     maxUnavailable: 25% # Up to 25% of pods can be down during update
+#     maxSurge: 25% # Can temporarily create 25% extra pods during update
 
