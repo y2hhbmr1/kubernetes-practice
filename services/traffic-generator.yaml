@@ -9,5 +9,5 @@ spec:
     - name: traffic-generator
       image: marychandana484742/traffic-generator:1.0.0
       args:
-        - "10.244.0.20/api"
+        - "color-api-clusterip/api"
         - "0.5"
