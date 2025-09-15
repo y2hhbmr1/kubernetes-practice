@@ -8,9 +8,15 @@ kind: ResourceQuota
 metadata:
   namespace: dev
   name: dev-quota
+# spec:
+#   hard:
+#     requests.cpu: "1" # 1 CPU total requests across all pods
+#     requests.memory: "1Gi" # 1 GiB total memory requested
+#     limits.cpu: "2" # 2 CPUs maximum usage across all pods
+#     limits.memory: "2Gi" # 2 GiB maximum memory usage
 spec:
   hard:
-    requests.cpu: "1" # 1 CPU total requests across all pods
-    requests.memory: "1Gi" # 1 GiB total memory requested
-    limits.cpu: "2" # 2 CPUs maximum usage across all pods
-    limits.memory: "2Gi" # 2 GiB maximum memory usage
+    requests.cpu: "2"
+    requests.memory: "2Gi"
+    limits.cpu: "4"
+    limits.memory: "4Gi"
