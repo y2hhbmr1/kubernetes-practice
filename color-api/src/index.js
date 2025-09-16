@@ -11,9 +11,7 @@ const hostname = os.hostname();
 // Read environment variables
 const delayStartup = process.env.DELAY_STARTUP === "true";
 const failLiveness = process.env.FAIL_LIVENESS === "true";
-const failReadiness =
-  process.env.FAIL_READINESS === "true" ? Math.random() < 0.5 : false;
-
+const failReadiness = process.env.FAIL_READINESS === "true";
 // Log the chosen configuration
 console.log("Delay Startup:", delayStartup);
 console.log("Fail Liveness:", failLiveness);
@@ -41,6 +39,13 @@ app.get("/api", (req, res) => {
     return res.send(`COLOR : ${color},  Hostname: ${hostname}
     `);
   }
+});
+
+app.get("/ready", (req, res) => {
+  if (failReadiness && Math.random() < 0.5) {
+    return res.sendStatus(503); // Force readiness failure
+  }
+  return res.send("OK");
 });
 
 app.get("/up", (req, res) => {
