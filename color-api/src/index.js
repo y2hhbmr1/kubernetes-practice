@@ -11,7 +11,8 @@ const hostname = os.hostname();
 // Read environment variables
 const delayStartup = process.env.DELAY_STARTUP === "true";
 const failLiveness = process.env.FAIL_LIVENESS === "true";
-const failReadiness = process.env.FAIL_READINESS === "true";
+const failReadiness =
+  process.env.FAIL_READINESS === "true" ? Math.random() < 0.5 : false;
 
 // Log the chosen configuration
 console.log("Delay Startup:", delayStartup);
@@ -42,18 +43,8 @@ app.get("/api", (req, res) => {
   }
 });
 
-if (delayStartup) {
-  const start = Date.now();
-  while (Date.now() - start < 60000) {
-    // Purposefully block the event loop and execution for 60s
-  }
-}
-
-app.get("/ready", (req, res) => {
-  if (failReadiness && Math.random() < 0.5) {
-    return res.sendStatus(503); // Service unavailable
-  }
-  return res.send("OK"); // Default: healthy
+app.get("/up", (req, res) => {
+  return res.send("OK");
 });
 
 app.get("/health", (req, res) => {
@@ -62,6 +53,13 @@ app.get("/health", (req, res) => {
   }
   return res.send("OK");
 });
+
+if (delayStartup) {
+  const start = Date.now();
+  while (Date.now() - start < 60000) {
+    // Purposefully block the event loop and execution for 60s
+  }
+}
 
 // Start server
 app.listen(port, () => {
