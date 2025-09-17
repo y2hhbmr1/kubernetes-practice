@@ -33,7 +33,7 @@ spec:
       spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: local-storage
+        storageClassName: standard
         resources:
           requests:
             storage: 128Mi
