@@ -2,10 +2,28 @@
 const express = require("express"); // Import express
 const os = require("os"); // Import os module to get hostname
 
+const fs = require("fs");
+const path = require("path");
+
+const getColor = () => {
+  let color = process.env.DEFAULT_COLOR; // First option: environment variable
+  const filePath = process.env.COLOR_CONFIG_PATH; // Second option: file path
+  if (filePath) {
+    try {
+      const colorFromFile = fs.readFileSync(path.resolve(filePath), "utf8");
+      color = colorFromFile.trim(); // remove whitespace, newlines
+    } catch (error) {
+      console.error(`Failed to read contents of ${filePath}`);
+      console.error(error);
+    }
+  }
+  return color || "green";
+};
+
 const app = express(); // Create express app
 const port = 80; // App will listen on port 80
 
-const color = "green";
+const color = getColor();
 const hostname = os.hostname();
 
 // Read environment variables
