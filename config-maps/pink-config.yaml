@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pink-env-vars
+data:
+  COLOR_CONFIG_PATH: /mnt/config/color.txt
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pink-files
+data:
+  color.txt: pink
+  hello-from-pink.js: |
+    console.log("Hello from")
+    console.log("The pink config map")
