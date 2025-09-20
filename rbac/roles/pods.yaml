@@ -34,6 +34,7 @@ metadata:
   labels:
     name: alpine-curl
 spec:
+  serviceAccountName: pod-inspector
   containers:
     - name: curl
       image: lmacademy/alpine-curl:1.0.0
