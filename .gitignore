@@ -2,3 +2,6 @@ kubectl
 kubectl.sha256
 minikube-linux-amd64
 node_modules
+*.csr
+*.key
+*.crt
