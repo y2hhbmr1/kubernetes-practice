@@ -10,7 +10,9 @@ spec:
     - Ingress
   ingress:
     - from:
-        - podSelector:
+        - namespaceSelector:
             matchLabels:
-              app: curl
-              tier: backend
+              kubernetes.io/metadata.name: dev
+          podSelector:
+            matchLabels:
+              app: traffic-generator
