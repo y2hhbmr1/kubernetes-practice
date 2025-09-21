@@ -16,3 +16,6 @@ spec:
           podSelector:
             matchLabels:
               app: traffic-generator
+        - podSelector:
+            matchLabels:
+              app: curl
