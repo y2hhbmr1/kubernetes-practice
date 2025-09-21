@@ -4,6 +4,7 @@ metadata:
   name: curl2
   labels:
     app: curl2
+    tier: backend
 spec:
   containers:
     - name: curl2

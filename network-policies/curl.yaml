@@ -4,11 +4,12 @@ metadata:
   name: curl
   labels:
     app: curl
+    tier: frontend
 spec:
   containers:
     - name: curl
       image: lmacademy/alpine-curl:1.0.0
       resources:
         limits:
-          memory: '128Mi'
-          cpu: '500m'
+          memory: "128Mi"
+          cpu: "500m"
