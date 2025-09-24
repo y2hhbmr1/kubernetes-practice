@@ -4,4 +4,19 @@ kind: Kustomization
 resources:
   - ../../base
 
-namespace: dev
+namePrefix: dev-
+nameSuffix: -alpha
+
+commonLabels:
+  project: ecommerce-app
+  tier: backend
+  env: dev
+
+commonAnnotations:
+  team: finance
+  maintainer: "finance@ourcompany.org"
+  repository: "git-repo"
+
+replicas:
+  - name: nginx
+    count: 2
